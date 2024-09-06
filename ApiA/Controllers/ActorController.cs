@@ -168,7 +168,6 @@ namespace ApiA.Controllers
                 GeneroBiografia = actorDTO.GeneroBiografia,
                 Premios = actorDTO.Premios,
                 NumeroPeliculas = actorDTO.NumeroPeliculas,
-                FechaCreacion = DateTime.Now
             };
         }
     }

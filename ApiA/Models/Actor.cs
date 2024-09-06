@@ -11,7 +11,7 @@ public partial class Actor
 
     public string? Apellido { get; set; }
 
-    public DateOnly? FechaNacimiento { get; set; }
+    public DateTime? FechaNacimiento { get; set; }
 
     public string? Nacionalidad { get; set; }
 

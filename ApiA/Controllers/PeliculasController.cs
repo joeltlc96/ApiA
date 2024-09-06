@@ -15,6 +15,7 @@ namespace ApiA.Controllers
     [ApiController]
     public class PeliculasController : ControllerBase
     {
+        private const string BaseUrlApiA = "https://localhost:7101/api/Pelicula";
 
         private readonly BaseAContext _context;
 

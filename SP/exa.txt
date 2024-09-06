@@ -1,0 +1,64 @@
+TABLA SQLSERVER
+
+CREATE TABLE Pelicula (
+    id_pelicula INT PRIMARY KEY IDENTITY(1,1),
+    titulo VARCHAR(255) NOT NULL,
+    genero VARCHAR(100),
+    director VARCHAR(255),
+    anio_estreno INT,
+    duracion INT,
+    sinopsis TEXT,
+    fecha_creacion DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Actor (
+    id_actor INT PRIMARY KEY IDENTITY(1,1),
+    nombre NVARCHAR(100) NOT NULL,
+    apellido VARCHAR(100),
+    fecha_nacimiento DATE,
+    nacionalidad VARCHAR(100),
+    genero_biografia VARCHAR(50),
+    premios VARCHAR(255),
+    numero_peliculas INT,
+    fecha_creacion DATETIME DEFAULT GETDATE()
+);
+
+-- Stored Procedure para insertar Película
+CREATE PROCEDURE InsertPelicula
+    @titulo VARCHAR(255),
+    @genero VARCHAR(100),
+    @director VARCHAR(255),
+    @anio_estreno INT,
+    @duracion INT
+AS
+BEGIN
+    INSERT INTO Pelicula (titulo, genero, director, anio_estreno, duracion, fecha_creacion)
+    VALUES (@titulo, @genero, @director, @anio_estreno, @duracion, GETDATE())
+END
+
+-- Stored Procedure para insertar Actor
+CREATE PROCEDURE InsertActor
+    @nombre NVARCHAR(100),
+    @apellido VARCHAR(100),
+    @fecha_nacimiento DATE,
+    @nacionalidad VARCHAR(100),
+    @genero_biografia VARCHAR(50),
+    @premios VARCHAR(255),
+    @numero_peliculas INT
+AS
+BEGIN
+    INSERT INTO Actor (nombre, apellido, fecha_nacimiento, nacionalidad, genero_biografia, premios, numero_peliculas, fecha_creacion)
+    VALUES (@nombre, @apellido, @fecha_nacimiento, @nacionalidad, @genero_biografia, @premios, @numero_peliculas, GETDATE())
+END
+CREAR API SOLO CON STORE PROCEDURE  
+CREAR CARPETA COMUNES DENTRO CLASS ConexionDB PARA LA CONEXION DE LA BASE DE DATO ASI
+   public class ConexionDB
+   {
+       private static SqlConnection conexion;
+
+       public static SqlConnection abrirConexion()
+       {
+           conexion = new SqlConnection("Server = ACER\\MSSQLSERVER01; Database = HistorialFutbol; Trusted_Connection = True;");
+           conexion.Open();
+           return conexion;
+       }
